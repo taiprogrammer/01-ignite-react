@@ -1,7 +1,7 @@
 .post {
-  background: var(--gray-800);
-  border-radius: 8px;
   padding: 2.5rem;
+  border-radius: 8px;
+  background: var(--gray-800);
 }
 
 .post + .post {
@@ -10,8 +10,8 @@
 
 .content {
   line-height: 1.6;
-  color: var(--gray-300);
   margin-top: 1.5rem;
+  color: var(--gray-300);
 }
 
 .content p {
@@ -20,8 +20,8 @@
 
 .content a {
   font-weight: bold;
-  color: var(--green-500);
   text-decoration: none;
+  color: var(--green-500);
 }
 
 .content a:hover {
@@ -51,8 +51,8 @@
 }
 
 .authorInfo strong {
-  color: var(--gray-100);
   line-height: 1.6;
+  color: var(--gray-100);
 }
 
 .authorInfo strong {
@@ -62,10 +62,61 @@
 }
 
 .author img {
-  border-radius: 8px;
   object-fit: cover;
+  border-radius: 8px;
   width: calc(3rem + 12px);
   height: calc(3rem + 12px);
   border: 4px solid var(--gray-800);
   outline: 2px solid var(--green-500);
+}
+
+.commentForm {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-600);
+}
+
+.commentForm > strong {
+  line-height: 1.6;
+  color: var(--gray-100);
+}
+
+.commentForm textarea {
+  border: 0;
+  width: 100%;
+  resize: none;
+  height: 6rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  line-height: 1.4;
+  border-radius: 8px;
+  color: var(--gray-100);
+  background: var(--gray-900);
+}
+
+.commentForm footer {
+  max-height: 0;
+  visibility: hidden;
+}
+
+.commentForm:focus-within footer {
+  max-height: none;
+  visibility: visible;
+}
+
+.commentForm footer button {
+  border: 0;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  background: var(--green-500);
+  transition: background-color 0.2s;
+}
+
+.commentForm footer button:hover {
+  background: var(--green-300);
 }
