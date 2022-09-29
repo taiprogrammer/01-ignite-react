@@ -1,5 +1,6 @@
 :root {
   --white: #fff;
+  --red-500: #f75a68;
   --gray-100: #e1e1e6;
   --gray-300: #c4c4cc;
   --gray-400: #8d8d99;
@@ -9,7 +10,6 @@
   --gray-900: #121214;
   --green-300: #00b37e;
   --green-500: #00875f;
-  --red-500: #f75a68;
 }
 
 :focus {
@@ -24,8 +24,8 @@
 }
 
 body {
-  background: var(--gray-900);
   color: var(--gray-300);
+  background: var(--gray-900);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -33,7 +33,21 @@ body,
 input,
 textarea,
 button {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 1rem;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 rgb(155, 155, 155);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--green-500);
 }
