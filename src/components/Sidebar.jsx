@@ -11,10 +11,7 @@ export function Sidebar() {
         alt="Cover Profile"
       />
       <div className={styles.profile}>
-        <Avatar
-          photo="https://github.com/taiprogrammer.png"
-          applyBorder={true}
-        />
+        <Avatar photo="https://github.com/taiprogrammer.png" />
         <strong>Taiza Marques</strong>
         <span>Web/Mobile Developer</span>
       </div>

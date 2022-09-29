@@ -7,10 +7,7 @@ export function Post() {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar
-            photo="https://github.com/taiprogrammer.png"
-            applyBorder={true}
-          />
+          <Avatar photo="https://github.com/taiprogrammer.png" />
           <div className={styles.authorInfo}>
             <strong>Taiza Marques</strong>
             <span>Web Developer</span>
