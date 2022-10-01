@@ -30,9 +30,9 @@
 }
 
 .sidebar footer {
-  border-top: 1px solid var(--gray-600);
   margin-top: 1.5rem;
   padding: 1.5rem 2rem 2rem;
+  border-top: 1px solid var(--gray-600);
 }
 
 .sidebar footer a {
@@ -55,6 +55,6 @@
 }
 
 .sidebar footer a:hover {
-  background: var(--green-500);
   color: var(--white);
+  background: var(--green-500);
 }

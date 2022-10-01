@@ -1,34 +1,57 @@
-import { Avatar } from "./Avatar";
-import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-export function Post() {
+import intervalToDuration from "date-fns/intervalToDuration";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
+import { Avatar } from "./Avatar";
+import { Comment } from "./Comment";
+
+export function Post({ author, publishedAt, comments, content }) {
+  const timePublished = publishedAt;
+  const timeNow = new Date();
+
+  const { hours, days } = intervalToDuration({
+    start: timePublished,
+    end: timeNow,
+  });
+
+  const duration = intervalToDuration({
+    start: timePublished,
+    end: timeNow,
+  });
+
+  const month = format(publishedAt, "LLLL", { locale: ptBR });
+
+  console.log(duration);
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar photo="https://github.com/taiprogrammer.png" />
+          <Avatar photo={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Taiza Marques</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
-        <time title="11 de Maio às 11:13" dateTime="2022-05-11 08:13:30">
-          Publicado há 1h
+        <time
+          title={`${publishedAt.getDate()} de ${month} às ${publishedAt.getHours()}:${publishedAt.getMinutes()}`}
+          dateTime={`${publishedAt.getDate()} ${publishedAt.getTime()}`}
+        >
+          Publicado há {hours}h
         </time>
       </header>
       <div className={styles.content}>
-        <p>Fala galeraa</p>
+        <p>{content[0]}</p>
+        <p>{content[1]}</p>
         <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare
+          <a href="#">{content[2]}</a>
         </p>
         <p>
-          <a href="#">jane.design/doctorcare</a>
-        </p>
-        <p>
-          <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{" "}
-          <a href="#">#rocketseat</a>
+          <a href="#">{content[3]}</a>
+          <a href="#">{content[4]}</a>
+          <a href="#">{content[5]}</a>
         </p>
       </div>
       <form className={styles.commentForm}>
@@ -39,9 +62,9 @@ export function Post() {
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => (
+          <Comment comment={comment} key={comment.id} />
+        ))}
       </div>
     </article>
   );
