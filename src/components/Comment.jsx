@@ -1,8 +1,24 @@
+import { format, formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { ThumbsUp, Trash } from "phosphor-react";
+
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
 export function Comment({ comment }) {
+  const timeCommentPublished = comment.time;
+
+  const relativeDateToNow = formatDistanceToNow(timeCommentPublished, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+
+  const formattedDate = format(
+    timeCommentPublished,
+    "dd 'de' LLLL 'às' HH:mm",
+    { locale: ptBR }
+  );
+  const dateTimeFormatted = format(timeCommentPublished, "uuuu-LL-dd HH:mm:ss");
   return (
     <div className={styles.comment}>
       <Avatar photo={comment.author.avatarUrl} applyBorder={false} />
@@ -11,9 +27,8 @@ export function Comment({ comment }) {
           <header>
             <div className={styles.authorAndTime}>
               <strong>{comment.author.name}</strong>
-              <time title="11 de Maio às 11:13" dateTime="2022-05-11 08:13:30">
-                Cerca de {comment.time.toString()}h atrás
-                {/* {console.log(comment.time)} */}
+              <time title={formattedDate} dateTime={dateTimeFormatted}>
+                {relativeDateToNow}
               </time>
             </div>
             <button title="Excluir comentário">

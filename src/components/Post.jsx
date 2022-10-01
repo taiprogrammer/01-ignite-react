@@ -1,7 +1,6 @@
 import styles from "./Post.module.css";
 
-import intervalToDuration from "date-fns/intervalToDuration";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import { Avatar } from "./Avatar";
@@ -9,21 +8,19 @@ import { Comment } from "./Comment";
 
 export function Post({ author, publishedAt, comments, content }) {
   const timePublished = publishedAt;
-  const timeNow = new Date();
 
-  const { hours, days } = intervalToDuration({
-    start: timePublished,
-    end: timeNow,
+  const relativeDateToNow = formatDistanceToNow(timePublished, {
+    locale: ptBR,
+    addSuffix: true,
   });
 
-  const duration = intervalToDuration({
-    start: timePublished,
-    end: timeNow,
+  const dateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm", {
+    locale: ptBR,
   });
 
-  const month = format(publishedAt, "LLLL", { locale: ptBR });
-
-  console.log(duration);
+  const dateTimeFormatted = format(timePublished, "uuuu-LL-dd HH:mm:ss", {
+    locale: ptBR,
+  });
 
   return (
     <article className={styles.post}>
@@ -35,11 +32,8 @@ export function Post({ author, publishedAt, comments, content }) {
             <span>{author.role}</span>
           </div>
         </div>
-        <time
-          title={`${publishedAt.getDate()} de ${month} às ${publishedAt.getHours()}:${publishedAt.getMinutes()}`}
-          dateTime={`${publishedAt.getDate()} ${publishedAt.getTime()}`}
-        >
-          Publicado há {hours}h
+        <time title={dateFormatted} dateTime={dateTimeFormatted}>
+          {relativeDateToNow}
         </time>
       </header>
       <div className={styles.content}>
