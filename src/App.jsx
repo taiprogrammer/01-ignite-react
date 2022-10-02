@@ -247,11 +247,11 @@ export function App() {
         <main>
           {posts.map(({ author, content, publishedAt, comments, id }) => (
             <Post
+              key={id}
               author={author}
               content={content}
               publishedAt={publishedAt}
               comments={comments}
-              key={id}
             />
           ))}
         </main>

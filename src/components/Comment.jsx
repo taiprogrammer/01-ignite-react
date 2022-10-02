@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { ptBR } from "date-fns/locale";
 import { ThumbsUp, Trash } from "phosphor-react";
 import { format, formatDistanceToNow } from "date-fns";
@@ -7,6 +9,8 @@ import styles from "./Comment.module.css";
 
 export function Comment({ comment }) {
   const timeCommentPublished = comment.time;
+
+  const [numberOfLikes, setNumberOfLikes] = useState(comment.likes);
 
   const relativeDateToNow = formatDistanceToNow(timeCommentPublished, {
     locale: ptBR,
@@ -19,6 +23,14 @@ export function Comment({ comment }) {
     { locale: ptBR }
   );
   const dateTimeFormatted = format(timeCommentPublished, "uuuu-LL-dd HH:mm:ss");
+
+  function handleLike() {
+    if (numberOfLikes === comment.likes) {
+      setNumberOfLikes(numberOfLikes + 1);
+    } else {
+      setNumberOfLikes(numberOfLikes - 1);
+    }
+  }
 
   return (
     <div className={styles.comment}>
@@ -40,9 +52,9 @@ export function Comment({ comment }) {
           <p>{comment.content}</p>
         </div>
         <footer>
-          <button>
+          <button onClick={handleLike}>
             <ThumbsUp size={20} />
-            Aplaudir <span>{comment.likes}</span>
+            Aplaudir <span>{numberOfLikes}</span>
           </button>
         </footer>
       </div>
