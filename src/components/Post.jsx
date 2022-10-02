@@ -1,15 +1,15 @@
 import styles from "./Post.module.css";
 
-import { format, formatDistanceToNow } from "date-fns";
+import { useState } from "react";
+
 import { ptBR } from "date-fns/locale";
+import { format, formatDistanceToNow } from "date-fns";
 
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 
 export function Post({ author, publishedAt, comments, content }) {
-  const timePublished = publishedAt;
-
-  const relativeDateToNow = formatDistanceToNow(timePublished, {
+  const relativeDateToNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
   });
@@ -18,9 +18,33 @@ export function Post({ author, publishedAt, comments, content }) {
     locale: ptBR,
   });
 
-  const dateTimeFormatted = format(timePublished, "uuuu-LL-dd HH:mm:ss", {
+  const dateTimeFormatted = format(publishedAt, "uuuu-LL-dd HH:mm:ss", {
     locale: ptBR,
   });
+
+  const [comment, setComment] = useState("");
+
+  const [commentsList, setCommentsList] = useState(comments);
+
+  function addNewComment(e) {
+    e.preventDefault();
+
+    setCommentsList([
+      ...commentsList,
+      {
+        id: Math.random() * 100,
+        author: {
+          avatarUrl: "https://github.com/taiprogrammer.png",
+          name: "Taiza Marques",
+        },
+        content: comment,
+        likes: 0,
+        time: new Date(),
+      },
+    ]);
+
+    setComment("");
+  }
 
   return (
     <article className={styles.post}>
@@ -37,26 +61,34 @@ export function Post({ author, publishedAt, comments, content }) {
         </time>
       </header>
       <div className={styles.content}>
-        <p>{content[0]}</p>
-        <p>{content[1]}</p>
-        <p>
-          <a href="#">{content[2]}</a>
-        </p>
-        <p>
-          <a href="#">{content[3]}</a>
-          <a href="#">{content[4]}</a>
-          <a href="#">{content[5]}</a>
-        </p>
+        {content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type === "link") {
+            return (
+              <p>
+                <a href="#">{line.content}</a>
+              </p>
+            );
+          } else if (line.type === "hashtag") {
+            return <a href="#">{line.content} </a>;
+          }
+        })}
       </div>
-      <form className={styles.commentForm}>
+      <form onSubmit={addNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          onChange={(event) => setComment(event.target.value)}
+          name="comment"
+          value={comment}
+          placeholder="Deixe um comentário"
+        />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
       <div className={styles.commentList}>
-        {comments.map((comment) => (
+        {commentsList.map((comment) => (
           <Comment comment={comment} key={comment.id} />
         ))}
       </div>

@@ -16,12 +16,28 @@ export function App() {
         role: "Web/Mobile Developer",
       },
       content: [
-        "Fala galeraa",
-        "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
-        "jane.design/doctorcare",
-        "#novoprojeto",
-        "#nlw",
-        "#rocketseat",
+        {
+          type: "paragraph",
+          content: "Fala galeraa",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
+        },
+        {
+          type: "link",
+          content: "jane.design/doctorcare",
+        },
+        {
+          type: "hashtag",
+          content: "#novoprojeto",
+        },
+        {
+          type: "hashtag",
+          content: "#nlw",
+        },
+        { type: "hashtag", content: "#rocketseat" },
       ],
       comments: [
         {
@@ -44,6 +60,16 @@ export function App() {
           likes: 50,
           time: new Date(2022, 9, 30, 11, 58),
         },
+        {
+          id: 3,
+          author: {
+            avatarUrl: "https://github.com/lucabarbos.png",
+            name: "Lucas Barbosa",
+          },
+          content: "Belo projeto!!!",
+          likes: 100,
+          time: new Date(),
+        },
       ],
     },
     {
@@ -55,12 +81,28 @@ export function App() {
         role: "Web/Mobile Developer",
       },
       content: [
-        "Fala galeraa",
-        "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
-        "jane.design/doctorcare",
-        "#novoprojeto",
-        "#nlw",
-        "#rocketseat",
+        {
+          type: "paragraph",
+          content: "Fala galeraa",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
+        },
+        {
+          type: "link",
+          content: "jane.design/doctorcare",
+        },
+        {
+          type: "hashtag",
+          content: "#novoprojeto",
+        },
+        {
+          type: "hashtag",
+          content: "#nlw",
+        },
+        { type: "hashtag", content: "#rocketseat" },
       ],
       comments: [
         {
@@ -94,12 +136,28 @@ export function App() {
         role: "Back End Developer",
       },
       content: [
-        "Fala galeraa",
-        "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
-        "jane.design/doctorcare",
-        "#novoprojeto",
-        "#nlw",
-        "#rocketseat",
+        {
+          type: "paragraph",
+          content: "Fala galeraa",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
+        },
+        {
+          type: "link",
+          content: "jane.design/doctorcare",
+        },
+        {
+          type: "hashtag",
+          content: "#novoprojeto",
+        },
+        {
+          type: "hashtag",
+          content: "#nlw",
+        },
+        { type: "hashtag", content: "#rocketseat" },
       ],
       comments: [
         {
@@ -133,12 +191,28 @@ export function App() {
         role: "Back End Developer",
       },
       content: [
-        "Fala galeraa",
-        "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
-        "jane.design/doctorcare",
-        "#novoprojeto",
-        "#nlw",
-        "#rocketseat",
+        {
+          type: "paragraph",
+          content: "Fala galeraa",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare",
+        },
+        {
+          type: "link",
+          content: "jane.design/doctorcare",
+        },
+        {
+          type: "hashtag",
+          content: "#novoprojeto",
+        },
+        {
+          type: "hashtag",
+          content: "#nlw",
+        },
+        { type: "hashtag", content: "#rocketseat" },
       ],
       comments: [
         {

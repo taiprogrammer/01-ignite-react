@@ -1,6 +1,6 @@
-import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { ThumbsUp, Trash } from "phosphor-react";
+import { format, formatDistanceToNow } from "date-fns";
 
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
@@ -19,6 +19,7 @@ export function Comment({ comment }) {
     { locale: ptBR }
   );
   const dateTimeFormatted = format(timeCommentPublished, "uuuu-LL-dd HH:mm:ss");
+
   return (
     <div className={styles.comment}>
       <Avatar photo={comment.author.avatarUrl} applyBorder={false} />
