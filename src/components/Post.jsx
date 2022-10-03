@@ -32,7 +32,7 @@ export function Post({ author, publishedAt, comments, content }) {
     setCommentsList([
       ...commentsList,
       {
-        id: Math.random() * 100,
+        id: commentsList.length + 1,
         author: {
           avatarUrl: "https://github.com/taiprogrammer.png",
           name: "Taiza Marques",
@@ -44,6 +44,14 @@ export function Post({ author, publishedAt, comments, content }) {
     ]);
 
     setComment("");
+  }
+
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = commentsList.filter((comment) => {
+      return comment.id !== commentToDelete;
+    });
+
+    setCommentsList(commentsWithoutDeletedOne);
   }
 
   return (
@@ -93,7 +101,11 @@ export function Post({ author, publishedAt, comments, content }) {
       </form>
       <div className={styles.commentList}>
         {commentsList.map((comment) => (
-          <Comment comment={comment} key={comment.id} />
+          <Comment
+            comment={comment}
+            onDeleteComment={deleteComment}
+            key={comment.id}
+          />
         ))}
       </div>
     </article>
