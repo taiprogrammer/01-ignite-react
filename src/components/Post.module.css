@@ -108,10 +108,22 @@
   transition: background-color 0.2s;
 }
 
-.commentForm footer button:hover {
+.commentForm footer button:not(:disabled):hover {
   background: var(--green-300);
+}
+
+.commentForm footer button:disabled {
+  background: var(--gray-400);
+  cursor: not-allowed;
 }
 
 .commentList {
   margin-top: 2rem;
+}
+
+.danger {
+  /* outline: transparent !important;
+  box-shadow: 0 0 0 2px var(--red-500) !important; */
+  border: 2px solid var(--red-500);
+  color: red;
 }

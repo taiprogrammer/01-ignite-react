@@ -1,6 +1,6 @@
 import styles from "./Post.module.css";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { ptBR } from "date-fns/locale";
 import { format, formatDistanceToNow } from "date-fns";
@@ -9,6 +9,11 @@ import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 
 export function Post({ author, publishedAt, comments, content }) {
+  const [comment, setComment] = useState("");
+
+  const [commentsList, setCommentsList] = useState(comments);
+
+  const fieldElement = useRef();
   const relativeDateToNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
@@ -21,10 +26,6 @@ export function Post({ author, publishedAt, comments, content }) {
   const dateTimeFormatted = format(publishedAt, "uuuu-LL-dd HH:mm:ss", {
     locale: ptBR,
   });
-
-  const [comment, setComment] = useState("");
-
-  const [commentsList, setCommentsList] = useState(comments);
 
   function addNewComment(e) {
     e.preventDefault();
@@ -53,6 +54,12 @@ export function Post({ author, publishedAt, comments, content }) {
 
     setCommentsList(commentsWithoutDeletedOne);
   }
+
+  const isNewCommentEmpty = comment === "";
+  // function handleNewCommentInvalid(event) {
+  //   console.log(event);
+  //   event.target.setCustomValidity("Este campo é obrigatório!");
+  // }
 
   return (
     <article className={styles.post}>
@@ -93,10 +100,15 @@ export function Post({ author, publishedAt, comments, content }) {
           onChange={(event) => setComment(event.target.value)}
           name="comment"
           value={comment}
+          ref={fieldElement}
           placeholder="Deixe um comentário"
+          required
+          // onInvalid={handleNewCommentInvalid}
         />
         <footer>
-          <button type="submit">Publicar</button>
+          <button disabled={isNewCommentEmpty} type="submit">
+            Publicar
+          </button>
         </footer>
       </form>
       <div className={styles.commentList}>
