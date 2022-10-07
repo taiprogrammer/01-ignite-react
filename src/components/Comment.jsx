@@ -7,7 +7,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
-export function Comment({ comment }) {
+export function Comment({ comment, onDeleteComment }) {
   const timeCommentPublished = comment.time;
 
   const [numberOfLikes, setNumberOfLikes] = useState(comment.likes);
@@ -32,6 +32,10 @@ export function Comment({ comment }) {
     }
   }
 
+  function handleDeleteComment() {
+    onDeleteComment(comment.id);
+  }
+
   return (
     <div className={styles.comment}>
       <Avatar photo={comment.author.avatarUrl} applyBorder={false} />
@@ -44,7 +48,7 @@ export function Comment({ comment }) {
                 {relativeDateToNow}
               </time>
             </div>
-            <button title="Excluir comentário">
+            <button onClick={handleDeleteComment} title="Excluir comentário">
               <Trash size={24} />
             </button>
           </header>
